@@ -7,11 +7,11 @@
 ;;
 ;; Add your personal config below:
 
-{:dev-local {:env {:measure-http-port 3000
+{:dev-local {:env {:measure-http-port "3000"
                    :measure-db-url "jdbc:postgresql:mydatabase"
                    :measure-db-user "DATABASE-USERNAME"
                    :measure-db-password "DATABASE-PASSWORD"}}
- :test {:env  {:http-port 3000
+ :test {:env  {:http-port "3000"
                :measure-db-url "jdbc:postgresql:mydatabase"
                :measure-db-user "DATABASE-USERNAME"
                :measure-db-password "DATABASE-PASSWORD"}}}

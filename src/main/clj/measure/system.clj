@@ -8,7 +8,7 @@
   "Pull the configs from the env map"
   []
   (let [{:keys [measure-http-port measure-db-url measure-db-user measure-db-password]} env]
-    {:http-config {:port (or measure-http-port 3000)}
+    {:http-config {:port (or measure-http-port "3000")}
      :db-config {:jdbc-url measure-db-url
                  :username measure-db-user
                  :password measure-db-password}}))
