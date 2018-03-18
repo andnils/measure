@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test if the super hero list renders same as before 1`] = `
+<div>
+  <h1>
+     Super heroez 
+  </h1>
+  <ul>
+    <li>
+      Bruce Banner
+    </li>
+    <li>
+      Peter Parker
+    </li>
+  </ul>
+</div>
+`;
