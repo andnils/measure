@@ -20,6 +20,7 @@
   :source-paths ["src/main/clj"]
   :test-paths ["src/test/clj"]
   :resource-paths ["src/main/resources"]
+  :target-path "target/%s/"
   :repl-options {:init-ns user}
   :plugins [[lein-pprint "1.2.0"]]
   :profiles {:uberjar {:aot :all}
