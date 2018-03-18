@@ -11,6 +11,7 @@
                  [com.stuartsierra/component "0.3.2"]
                  [com.mchange/c3p0 "0.9.5.2"]
                  [ring/ring "1.6.3"]
+                 [ring/ring-json "0.4.0"]
                  [compojure "1.6.0"]
                  [cheshire "5.8.0"]
                  [environ "1.1.0"]

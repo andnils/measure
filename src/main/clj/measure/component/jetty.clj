@@ -13,7 +13,7 @@
       component
       (let [port (Integer/parseInt (get-in component [:config :port]))
             options {:join? false :port port}
-            handler (routes/make-routes (:db component))
+            handler (routes/handler (:db component))
             server  (jetty/run-jetty (fn [req] (handler req)) options)]
         (assoc component
                :server server))))

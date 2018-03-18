@@ -13,3 +13,6 @@
   (jdbc/query db
     ["SELECT id, firstname, lastname, heroname 
       FROM heroes ORDER BY id"]))
+
+(defn insert-hero [db hero]
+  (jdbc/insert! db :heroes hero))
