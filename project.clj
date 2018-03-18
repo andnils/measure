@@ -21,6 +21,7 @@
   :test-paths ["src/test/clj"]
   :resource-paths ["src/main/resources"]
   :repl-options {:init-ns user}
+  :plugins [[lein-pprint "1.2.0"]]
   :profiles {:uberjar {:aot :all}
              :dev [:dev-common :dev-local]
              :dev-common {:dependencies [[org.clojure/tools.namespace "0.2.11"]

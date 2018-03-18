@@ -7,7 +7,6 @@
     "test": "test"
   },
   "scripts": {
-    "backend": "java -jar target/measure-0.1.0-SNAPSHOT-standalone.jar",
     "dev": "webpack --mode development",
     "eslint": "eslint --ext .jsx,.js src/main/js",
     "prod": "webpack --mode production",

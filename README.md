@@ -25,14 +25,9 @@ Jetty is the web server.
 
 ### Backend
 
-If you just want to start the backend server you can build it with:
+If you just want to start the backend server you can just:
 
-    lein uberjar
-
-This will create `target/measure-0.1.0-SNAPSHOT-standalone.jar`.
-Run it with:
-
-    npm run backend
+    lein run
 
 If you plan on doing backend development, you should run it from the clojure REPL.
 Start the REPL from your IDE/editor, or run it in a terminal:
