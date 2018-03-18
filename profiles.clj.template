@@ -12,7 +12,7 @@
                    :measure-db-user "DATABASE-USERNAME"
                    :measure-db-password "DATABASE-PASSWORD"}}
  :test {:env  {:http-port 3000
-               :measure-db-adapter "jdbc:postgresql:mydatabase"
+               :measure-db-url "jdbc:postgresql:mydatabase"
                :measure-db-user "DATABASE-USERNAME"
                :measure-db-password "DATABASE-PASSWORD"}}}
 
