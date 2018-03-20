@@ -1,0 +1,35 @@
+version: '3'
+services:
+  mclojure:
+    image: clojure
+    hostname: mclojure
+    container_name: mclojure
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: lein run
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mpostgres
+  mnode:
+    image: node
+    hostname: mnode
+    entrypoint: ./node-entrypoint.sh
+    container_name: mnode
+    working_dir: /app
+    command: "npm run serve"
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
+  mpostgres:
+    image: postgres
+    hostname: mpostgres
+    container_name: mpostgres
+    environment:
+      - POSTGRES_PASSWORD=mpassword
+      - POSTGRES_USER=muser
+      - POSTGRES_DB=mdb
