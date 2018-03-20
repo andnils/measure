@@ -12,6 +12,8 @@ services:
     tty: true
     depends_on:
       - mpostgres
+    links:
+      - mpostgres
   mnode:
     image: node
     hostname: mnode
@@ -25,6 +27,8 @@ services:
     tty: true
     ports:
       - "8080:8080"
+    links:
+      - mclojure
   mpostgres:
     image: postgres
     hostname: mpostgres
