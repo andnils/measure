@@ -10,7 +10,7 @@
     "dev": "webpack --mode development",
     "eslint": "eslint --ext .jsx,.js src/main/js",
     "prod": "webpack --mode production",
-    "serve": "webpack-dev-server --mode development --open",
+    "serve": "webpack-dev-server --host 0.0.0.0 --public --mode development --open",
     "test": "jest",
     "uberjar": "lein uberjar"
   },
