@@ -1,10 +1,19 @@
 # measure
 
-TODO: Brief description
+A project template for a clojure web application, with a postgresql DB and javascript+react in the frontend.
 
 ## Setup
 
 ### Prerequisites
+
+Either use the supplier docker setup, or setup your own environment.
+
+#### Using Docker
+* Docker / docker-compose
+
+TODO: prepare a default DB-connection for docker-users!
+
+#### Using locally installed stuff
 
 * Java 8
 * leiningen (clojure build tool)
