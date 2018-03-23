@@ -50,7 +50,7 @@ module.exports = {
     contentBase: OUTPUT_DIR,
     port: WEBPACK_DEVSERVER_PORT,
     proxy: {
-      '/api': `http://localhost:${API_PORT}`
+      '/api': `http://mclojure:${API_PORT}`
     }
   }
 };
