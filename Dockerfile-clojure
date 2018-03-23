@@ -1,0 +1,5 @@
+FROM clojure
+RUN apt-get update && apt-get install -y libpostgresql-jdbc-java
+WORKDIR /app
+ADD . /app
+RUN lein install

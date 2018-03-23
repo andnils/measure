@@ -19,5 +19,6 @@
   (let [config (system/make-config)
         system (system/make-system config)]
     (db-migrate config)
-    (component/start system)))
-
+    (println "db-migrate config DONE...")
+    (component/start system)
+    (println "component/start system DONE...")))
