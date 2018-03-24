@@ -4,12 +4,16 @@ services:
     image: clojure
     hostname: mclojure
     container_name: mclojure
-    working_dir: /app
     volumes:
       - .:/app
+    build:
+      context: .
+      dockerfile: Dockerfile-clojure
     command: lein run
     stdin_open: true
     tty: true
+    ports:
+      - "3449:3449"
     depends_on:
       - mpostgres
     links:
@@ -35,10 +39,10 @@ services:
     links:
       - mclojure
   mpostgres:
-    image: postgres
+    image: postgres:9.6
     hostname: mpostgres
     container_name: mpostgres
     environment:
-      - POSTGRES_PASSWORD=mpassword
-      - POSTGRES_USER=muser
-      - POSTGRES_DB=mdb
+      POSTGRES_USER: muser
+      POSTGRES_PASSWORD: mpassword
+      POSTGRES_DB: mdb
