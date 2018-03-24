@@ -11,7 +11,25 @@ Either use the supplier docker setup, or setup your own environment.
 #### Using Docker
 * Docker / docker-compose
 
-TODO: prepare a default DB-connection for docker-users!
+To start the development environment, use:
+
+```shell
+docker-compose up
+```
+
+* Containers
+
+To enter a bash shell in the node container:
+
+```shell
+docker exec -it mnode bash
+```
+
+Find the IP address of the clojure container
+
+```shell
+docker inspect mclojure | grep IPAddress
+```
 
 #### Using locally installed stuff
 
@@ -67,7 +85,7 @@ If you're using Emacs with Cider, bind the reset-command to a keyboard shortcut:
       (goto-char (point-max))
       (insert "(reset)")
       (cider-repl-return))
-    
+
     (global-set-key (kbd "C-c C-r C-r") 'clojure-component-reset)
 
 ### Frontend
@@ -86,5 +104,3 @@ Now a browser window will open, serving files from `dist`-directory. The dev ser
 ## Usage
 
 TODO
-
-
