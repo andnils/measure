@@ -1,9 +1,11 @@
 /* global module __dirname */
 const path = require('path');
+const process = require('process');
 
 const indexHtml = path.join(__dirname, 'src/main/resources', 'index.html');
 const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 const WEBPACK_DEVSERVER_PORT = 8080;
+const API_HOST = process.env.API_HOST ||'localhost';
 const API_PORT = 3000;
 
 
@@ -50,7 +52,7 @@ module.exports = {
     contentBase: OUTPUT_DIR,
     port: WEBPACK_DEVSERVER_PORT,
     proxy: {
-      '/api': `http://mclojure:${API_PORT}`
+      '/api': `http://${API_HOST}:${API_PORT}`
     }
   }
 };

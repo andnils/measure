@@ -25,6 +25,8 @@ services:
     entrypoint: ./node-entrypoint.sh
     container_name: mnode
     working_dir: /app
+    environment:
+      - API_HOST=mclojure
     command: "npm run serve"
     volumes:
       - .:/app
