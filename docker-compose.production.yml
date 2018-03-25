@@ -1,0 +1,38 @@
+version: '3'
+services:
+  mpostgres:
+    image: postgres:10.3-alpine
+    hostname: mpostgres
+    container_name: mpostgres
+    environment:
+      - POSTGRES_PASSWORD=${MEASURE_DB_PASSWORD}
+      - POSTGRES_USER=${MEASURE_DB_USER}
+      - POSTGRES_DB=${MEASURE_DB}
+  mclojure:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: mclojure
+    container_name: mclojure
+    command: java -jar /srv/measure.jar
+    depends_on:
+      - mpostgres
+    links:
+      - mpostgres
+    environment:
+      - MEASURE_HTTP_PORT=3000
+      - MEASURE_DB_URL=jdbc:postgresql://mpostgres/${MEASURE_DB}
+      - MEASURE_DB_USER=${MEASURE_DB_USER}
+      - MEASURE_DB_PASSWORD=${MEASURE_DB_PASSWORD}
+  mweb:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    hostname: mweb
+    container_name: mweb
+    ports:
+      - "8080:80"
+    links:
+      - mclojure
+    depends_on:
+      - mclojure
