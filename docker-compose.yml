@@ -1,7 +1,7 @@
 version: '3'
 services:
   mclojure:
-    image: clojure
+    image: clojure:lein-2.8.1-alpine
     hostname: mclojure
     container_name: mclojure
     working_dir: /app
@@ -20,7 +20,7 @@ services:
       - MEASURE_DB_USER=muser
       - MEASURE_DB_PASSWORD=mpassword
   mnode:
-    image: node
+    image: node:9.9.0-alpine
     hostname: mnode
     entrypoint: ./node-entrypoint.sh
     container_name: mnode
@@ -35,7 +35,7 @@ services:
     links:
       - mclojure
   mpostgres:
-    image: postgres
+    image: postgres:10.3-alpine
     hostname: mpostgres
     container_name: mpostgres
     environment:
