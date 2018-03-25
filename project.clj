@@ -17,7 +17,7 @@
                  [environ "1.1.0"]
                  [hikari-cp "2.2.0"]
                  [ragtime "0.7.2"]]
-  :main measure.main
+  :main measure.system
   :source-paths ["src/main/clj"]
   :test-paths ["src/test/clj"]
   :resource-paths ["src/main/resources"]
