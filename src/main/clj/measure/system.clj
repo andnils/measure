@@ -1,6 +1,9 @@
 (ns measure.system
+  (:gen-class)
   (:require [com.stuartsierra.component :as component]
             [environ.core :refer [env]]
+            [ragtime.jdbc]
+            [ragtime.repl]
             [measure.component.hikaricp :refer [hikaricp]]
             [measure.component.jetty :refer [jetty-server]]))
 
@@ -11,7 +14,11 @@
     {:http-config {:port (or measure-http-port "3000")}
      :db-config {:jdbc-url measure-db-url
                  :username measure-db-user
-                 :password measure-db-password}}))
+                 :password measure-db-password}
+     :ragtime-config {:datastore  (ragtime.jdbc/sql-database {:connection-uri measure-db-url
+                                                              :user measure-db-user
+                                                              :password measure-db-password})
+                      :migrations (ragtime.jdbc/load-resources "migrations")}}))
 
 
 (defn make-system
@@ -27,3 +34,16 @@
        :db (hikaricp db-config)
        :http (component/using
                (jetty-server http-config) [:db])))))
+
+
+(defn db-migrate [config]
+  (ragtime.repl/migrate (:ragtime-config config)))
+
+(defn db-rollback [config]
+  (ragtime.repl/rollback (:ragtime-config config)))
+
+(defn -main [& args]
+  (let [config (make-config)
+        system (make-system config)]
+    (db-migrate config)
+    (component/start system)))

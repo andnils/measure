@@ -1,5 +1,6 @@
 (ns measure.routes
   (:require [compojure.core :refer [GET PUT POST DELETE routes context]]
+            [compojure.route :refer [not-found]]
             [ring.util.response :refer [response content-type charset]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
     ;; [ring.middleware.file :refer [wrap-file]]
@@ -32,7 +33,8 @@
     (context "/api" []
       (GET "/heroes/:id" [id] (find-hero-by-id db id))
       (GET "/heroes" [] (find-all-heroes db))
-      (POST "/heroes" request (insert-hero db (:body request))))))
+      (POST "/heroes" request (insert-hero db (:body request))))
+    (not-found "not found")))
 
 
 ;; The handler function wraps the routes in middleware

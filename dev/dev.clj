@@ -22,26 +22,18 @@
    [com.stuartsierra.component.repl :refer [reset set-init start stop system]]
    [ragtime.jdbc]
    [ragtime.repl]
-   [measure.system :refer [make-system make-config]]))
+   [measure.system]))
 
 
 (clojure.tools.namespace.repl/set-refresh-dirs "dev" "src/main/clj" "src/test/clj")
 
 
-(def dev-config (make-config))
-
-(def ragtime-config
-  (let [db-config (:db-config dev-config)
-        uri (:jdbc-url db-config)
-        user (:username db-config)
-        password (:password db-config)]
-    {:datastore  (ragtime.jdbc/sql-database {:connection-uri uri :user user :password password})
-     :migrations (ragtime.jdbc/load-resources "migrations")}))
+(def dev-config (measure.system/make-config))
 
 (defn db-migrate []
-  (ragtime.repl/migrate ragtime-config))
+  (measure.system/db-migrate dev-config))
 (defn db-rollback []
-  (ragtime.repl/rollback ragtime-config))
+  (measure.system/db-rollback dev-config))
 
 
-(set-init (fn [_] (make-system dev-config)))
+(set-init (fn [_] (measure.system/make-system dev-config)))
