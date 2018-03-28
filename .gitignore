@@ -15,3 +15,5 @@ pom.xml.asc
 /node_modules
 /dist
 /profiles.clj
+
+/.env

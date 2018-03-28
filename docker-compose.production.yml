@@ -11,7 +11,7 @@ services:
   mclojure:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.clojure
     hostname: mclojure
     container_name: mclojure
     command: java -jar /srv/measure.jar
@@ -20,7 +20,7 @@ services:
     links:
       - mpostgres
     environment:
-      - MEASURE_HTTP_PORT=3000
+      - MEASURE_HTTP_PORT=${MEASURE_HTTP_PORT}
       - MEASURE_DB_URL=jdbc:postgresql://mpostgres/${MEASURE_DB}
       - MEASURE_DB_USER=${MEASURE_DB_USER}
       - MEASURE_DB_PASSWORD=${MEASURE_DB_PASSWORD}
