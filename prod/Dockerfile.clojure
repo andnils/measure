@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
-COPY measure.jar /srv/measure.jar
+COPY dist/measure.jar /srv/measure.jar
 
 EXPOSE 3000

@@ -1,28 +1,32 @@
 DIST_DIR = ./dist
-JAR_SOURCE_FILE = ../target/uberjar/measure-0.1.0-SNAPSHOT-standalone.jar
-JAR_TARGET_FILE = $(DIST_DIR)/measure.jar
-JS_SOURCE_BUNDLE = ../dist/bundle.js
-JS_TARGET_BUNDLE = $(DIST_DIR)/bundle.js
-CLOJURE_SRC = ../src/main/clj/measure/*
-JS_SRC = ../src/main/js
+CLJ_SRC_DIR = ../src/main/clj/*
+UBERJAR = ../target/uberjar/measure-0.1.0-SNAPSHOT-standalone.jar
+COPY_UBERJAR = $(DIST_DIR)/measure.jar
+STATIC_FILES = ../dist/*
+JS_SRC_DIR = ../src/main/js/
+COPY_STATIC_FILES = $(DIST_DIR)/static/
 
-prod : $(JAR_TARGET_FILE) $(JS_TARGET_BUNDLE)
+prod : $(COPY_UBERJAR) $(COPY_STATIC_FILES)
 	docker-compose build
 
-$(JAR_SOURCE_FILE) : $(CLOJURE_SRC)
+uberjar : $(UBERJAR)
+
+$(UBERJAR) : $(CLJ_SRC_DIR)
 	lein uberjar
 
-$(JS_SOURCE_BUNDLE) : $(JS_SRC)
+$(COPY_UBERJAR) : $(UBERJAR)
+	mkdir -p $(DIST_DIR)
+	cp $(UBERJAR) $(COPY_UBERJAR)
+
+statics : $(COPY_STATIC_FILES)
+
+$(STATIC_FILES) : $(JS_SRC_DIR)
 	npm run prod
 
-$(JAR_TARGET_FILE) : $(JAR_SOURCE_FILE)
-	mkdir -p $(DIST_DIR)
-	cp $(JAR_SOURCE_FILE) $(JAR_TARGET_FILE)
 
-$(JS_TARGET_BUNDLE) : $(JS_SOURCE_BUNDLE)
-	mkdir -p $(DIST_DIR)
-	cp $(JS_SOURCE_BUNDLE) $(JS_TARGET_BUNDLE)
+$(COPY_STATIC_FILES) : $(STATIC_FILES)
+	mkdir -p $(DIST_DIR)/static
+	cp -r $(STATIC_FILES) $(DIST_DIR)/static/
 
 clean :
-	rm $(JAR_TARGET_FILE)
-	rm $(JS_TARGET_BUNDLE)
+	rm -r $(DIST_DIR)
