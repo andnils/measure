@@ -7,18 +7,25 @@
             [measure.component.hikaricp :refer [hikaricp]]
             [measure.component.jetty :refer [jetty-server]]))
 
+
+(defn- -make-config [db-url db-user db-password http-port]
+  {:http-config {:port (or http-port "3000")}
+   :db-config {:jdbc-url db-url
+               :username db-user
+               :password db-password}
+   :ragtime-config {:datastore  (ragtime.jdbc/sql-database {:connection-uri db-url
+                                                            :user db-user
+                                                            :password db-password})
+                    :migrations (ragtime.jdbc/load-resources "migrations")}})
+
+
 (defn make-config
   "Pull the configs from the env map"
   []
   (let [{:keys [measure-http-port measure-db-url measure-db-user measure-db-password]} env]
-    {:http-config {:port (or measure-http-port "3000")}
-     :db-config {:jdbc-url measure-db-url
-                 :username measure-db-user
-                 :password measure-db-password}
-     :ragtime-config {:datastore  (ragtime.jdbc/sql-database {:connection-uri measure-db-url
-                                                              :user measure-db-user
-                                                              :password measure-db-password})
-                      :migrations (ragtime.jdbc/load-resources "migrations")}}))
+    (-make-config measure-db-url measure-db-user measure-db-password measure-http-port)))
+
+
 
 
 (defn make-system

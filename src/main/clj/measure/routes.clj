@@ -3,7 +3,7 @@
             [compojure.route :refer [not-found]]
             [ring.util.response :refer [response content-type charset]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
-            [ring.middleware.file :refer [wrap-file]]
+    ;; [ring.middleware.file :refer [wrap-file]]
             [measure.db :as q]))
 
 
@@ -42,4 +42,5 @@
   (-> (app-routes db)
       (wrap-json-body {:keywords? true :bigdecimals? true})
       (wrap-json-response)
-      (wrap-file "./dist")))
+      ;;(wrap-file "./dist")
+      ))
