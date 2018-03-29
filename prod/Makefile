@@ -5,6 +5,7 @@ COPY_UBERJAR = $(DIST_DIR)/measure.jar
 STATIC_FILES = ../dist/*
 JS_SRC_DIR = ../src/main/js/
 COPY_STATIC_FILES = $(DIST_DIR)/static/
+NODE_MODULES = ../node_modules/
 
 prod : $(COPY_UBERJAR) $(COPY_STATIC_FILES)
 	docker-compose build
@@ -20,7 +21,10 @@ $(COPY_UBERJAR) : $(UBERJAR)
 
 statics : $(COPY_STATIC_FILES)
 
-$(STATIC_FILES) : $(JS_SRC_DIR)
+$(NODE_MODULES) : ../package.json
+	npm install
+
+$(STATIC_FILES) : $(JS_SRC_DIR) $(NODE_MODULES)
 	npm run prod
 
 
