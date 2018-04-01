@@ -22,12 +22,11 @@ services:
   mnode:
     image: node:9.9.0
     hostname: mnode
-    entrypoint: ./node-entrypoint.sh
     container_name: mnode
     working_dir: /app
     environment:
       - API_HOST=mclojure
-    command: "npm run serve"
+    command: bash -c "npm install && npm run serve"
     volumes:
       - .:/app
     stdin_open: true
