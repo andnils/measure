@@ -20,8 +20,7 @@
    [clojure.tools.namespace.repl :refer [refresh refresh-all clear]]
    [com.stuartsierra.component :as component]
    [com.stuartsierra.component.repl :refer [reset set-init start stop system]]
-   [ragtime.jdbc]
-   [ragtime.repl]
+   [measure.database-migrations :as migrations]
    [measure.system]))
 
 
@@ -31,9 +30,9 @@
 (def dev-config (measure.system/make-config))
 
 (defn db-migrate []
-  (measure.system/db-migrate dev-config))
+  (migrations/db-migrate dev-config))
 (defn db-rollback []
-  (measure.system/db-rollback dev-config))
+  (migrations/db-rollback dev-config))
 
 
 (set-init (fn [_] (measure.system/make-system dev-config)))

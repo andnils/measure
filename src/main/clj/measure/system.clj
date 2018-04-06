@@ -2,27 +2,9 @@
   (:gen-class)
   (:require [com.stuartsierra.component :as component]
             [aero.core :as aero]
-            [ragtime.jdbc]
-            [ragtime.repl]
+            [measure.database-migrations :refer [db-migrate]]
             [measure.component.hikaricp :refer [hikaricp]]
             [measure.component.jetty :refer [jetty-server]]))
-
-
-
-(defn- make-ragtime-config
-  [{{:keys [:jdbc-url :username :password]} :db-config}]
-  {:datastore  (ragtime.jdbc/sql-database {:connection-uri jdbc-url
-                                           :user username
-                                           :password password})
-   :migrations (ragtime.jdbc/load-resources "migrations")})
-
-
-(defn db-migrate [config]
-  (ragtime.repl/migrate (make-ragtime-config config)))
-
-
-(defn db-rollback [config]
-  (ragtime.repl/rollback (make-ragtime-config config)))
 
 
 
