@@ -14,19 +14,17 @@
                  [ring/ring-json "0.4.0"]
                  [compojure "1.6.0"]
                  [cheshire "5.8.0"]
-                 [environ "1.1.0"]
+                 [aero "1.1.3"]
                  [hikari-cp "2.2.0"]
                  [ragtime "0.7.2"]]
   :main measure.system
   :source-paths ["src/main/clj"]
   :test-paths ["src/test/clj"]
-  :resource-paths ["src/main/resources"]
+  :resource-paths ["src/main/resources" "config"]
   :target-path "target/%s/"
   :repl-options {:init-ns user}
   :plugins [[lein-pprint "1.2.0"]]
   :profiles {:uberjar {:aot :all}
-             :dev [:dev-common :dev-local]
-             :dev-common {:dependencies [[org.clojure/tools.namespace "0.2.11"]
-                                         [com.stuartsierra/component.repl "0.2.0"]]
-                          :plugins [[lein-environ "1.1.0"]]
-                          :source-paths ["dev"]}})
+             :dev {:dependencies [[org.clojure/tools.namespace "0.2.11"]
+                                  [com.stuartsierra/component.repl "0.2.0"]]
+                   :source-paths ["dev"]}})

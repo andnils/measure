@@ -1,0 +1,12 @@
+;; Make a copy of this file and name if `private.edn`
+;; and enter your settings below.
+;; You MUST provide at least :db-password.
+;; The other settings are commented out, showing
+;; their default settings.
+
+{ 
+ ;; :http-port 3000
+ ;; :db-url "jdbc:postgresql:measuredb"
+ ;; :db-user "muser"
+ :db-password "DB-PASSWORD"
+ }

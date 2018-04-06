@@ -38,7 +38,7 @@ docker inspect mclojure | grep IPAddress
 * node/npm (npm 5.7.1)
 * postgresql 10
 
-Make sure that you set up a database, and enter you connection details in `profiles.clj` (there is a template you can copy named `profiles.clj.template`).
+Make sure that you set up a database, and enter you connection details in `config/private.edn` (there is a template you can copy named `config/private.cfg.template`). Note that `private.edn` is not meant to be put under source control.
 
 ### Technical namedropping
 
