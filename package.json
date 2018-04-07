@@ -13,6 +13,8 @@
     "prod": "webpack --mode production",
     "serve": "webpack-dev-server --host 0.0.0.0 --public --mode development --open",
     "test": "jest",
+    "test-all": "lein test && npm run test",
+    "posttest": "npm run eslint",
     "uberjar": "lein uberjar"
   },
   "jest": {

@@ -1,5 +1,5 @@
 CREATE TABLE heroes (
-   id BIGSERIAL PRIMARY KEY,
+   id SERIAL PRIMARY KEY,
    firstname VARCHAR(25) NOT NULL,
    lastname VARCHAR(25) NOT NULL,
    heroname VARCHAR(25) NOT NULL
