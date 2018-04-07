@@ -50,7 +50,7 @@
   (ok
     (GET (url "/api/heroes"))
     #{{:id 1 :firstname "Clark" :lastname "Kent" :heroname "Superman"}
-      {:id 2 :firstname "Brucea" :lastname "Wayne" :heroname "Batman"}
+      {:id 2 :firstname "Bruce" :lastname "Wayne" :heroname "Batman"}
       {:id 3 :firstname "Diana" :lastname "Prince" :heroname "Wonder Woman"}})
   (db-rollback test-config))
 
