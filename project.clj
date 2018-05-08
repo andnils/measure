@@ -8,14 +8,12 @@
                  [org.clojure/tools.logging "0.4.0"]
                  [ch.qos.logback/logback-classic "1.2.3"]
                  [org.postgresql/postgresql "42.2.2"]
-                 [com.stuartsierra/component "0.3.2"]
                  [com.mchange/c3p0 "0.9.5.2"]
                  [ring/ring "1.6.3"]
                  [ring/ring-json "0.4.0"]
                  [compojure "1.6.0"]
                  [cheshire "5.8.0"]
                  [aero "1.1.3"]
-                 [hikari-cp "2.2.0"]
                  [ragtime "0.7.2"]]
   :main measure.system
   :source-paths ["src/main/clj"]
@@ -25,8 +23,6 @@
   :repl-options {:init-ns user}
   :plugins [[lein-pprint "1.2.0"]]
   :profiles {:uberjar {:aot :all}
-             :dev {:dependencies [[org.clojure/tools.namespace "0.2.11"]
-                                  [com.stuartsierra/component.repl "0.2.0"]
-                                  [com.h2database/h2 "1.0.60"]
+             :dev {:dependencies [[com.h2database/h2 "1.0.60"]
                                   [restpect "0.2.1"]]
                    :source-paths ["dev"]}})

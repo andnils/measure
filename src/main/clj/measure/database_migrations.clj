@@ -3,11 +3,8 @@
             [ragtime.repl]))
 
 
-(defn- make-ragtime-config
-  [{{:keys [:jdbc-url :username :password]} :db-config}]
-  {:datastore  (ragtime.jdbc/sql-database {:connection-uri jdbc-url
-                                           :user username
-                                           :password password})
+(defn- make-ragtime-config [config]
+  {:datastore  (ragtime.jdbc/sql-database config)
    :migrations (ragtime.jdbc/load-resources "migrations")})
 
 

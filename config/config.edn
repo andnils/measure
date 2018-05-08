@@ -1,15 +1,17 @@
 {:private #include #join "private.edn"
  
- :http-config {:port #long #or [#env MEASURE_HTTP_PORT
-                                #ref [:private :http-port]
-                                3000]}
+ :http-port #long #or [#env MEASURE_HTTP_PORT
+                       #ref [:private :http-port]
+                       3000]
  
- :db-config {:jdbc-url #or [#env MEASURE_DB_URL
-                            #ref [:private :db-url]
-                            "jdbc:postgresql://localhost/measuredb"]
-             
-             :username #or [#env MEASURE_DB_USER
-                            #ref [:private :db-user]
-                            "muser"]
-             
-             :password #ref [:private :db-password]}}
+ :connection-uri #or [#env MEASURE_DB_URL
+                      #ref [:private :connection-uri]
+                      "jdbc:postgresql://localhost/measuredb"]
+ 
+ :user #or [#env MEASURE_DB_USER
+            #ref [:private :user]
+            "muser"]
+
+ :password #or [#env MEASURE_DB_PASSWORD
+                #ref [:private :password]]
+}

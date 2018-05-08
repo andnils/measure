@@ -44,7 +44,7 @@ Make sure that you set up a database, and enter you connection details in `confi
 
 React, eslint, webpack, babel for the front end.
 Postgres database.
-Clojure using Stuart Sierra's Component-library, and the standard Ring/Compojure libraries for http.
+Clojure using the standard Ring/Compojure libraries for http.
 Ragtime handles the database migrations.
 Jetty is the web server.
 
@@ -63,11 +63,13 @@ Start the REPL from your IDE/editor, or run it in a terminal:
 
 When the REPL boots, load the `dev` namespace, run database migrations, and start the http server:
 
-    user> (dev)
-    :ok
-    dev> (db-migrate)
+    user> (require 'measure.system)
+    nil
+    user> (require 'measure.database-migrations)
+    nil
+    user> (measure.database-migrations/db-migrate config)
     Applying 001-heroes
-    dev> (start)
+    user> (measure.system/start-jetty)
     ...
 
 When you've made changes to the (clojure-)code, call the `reset` function to reload the code:

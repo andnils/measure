@@ -2,8 +2,6 @@
   (:require [restpect.core :refer [created ok not-found]]
             [restpect.json :refer [GET POST]]
             [clojure.test :refer [deftest use-fixtures]]
-            [measure.system :refer [make-system]]
-            [com.stuartsierra.component :as component]
             [measure.database-migrations :refer [db-migrate db-rollback]]))
 
 (def test-system (atom nil))
