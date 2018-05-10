@@ -8,16 +8,6 @@
             [measure.db :as q]))
 
 
-(defn gen-pk
-  "Extract the generated primary key from
-   an INSERT statement.
-   PostgreSQL returns the whole row, while
-   H2 returns a map with key :identity()"
-  [response]
-  (or
-    (get (first response) :id)
-    (get (first response) (keyword "identity()"))))
-
 (defn find-hero-by-id [db id]
   (let [hero (first (q/find-hero-by-id db id))]
     (if hero
@@ -28,8 +18,8 @@
   (response (q/find-all-heroes db)))
 
 (defn insert-hero [db hero]
-  (let [response (q/insert-hero db hero)]
-    (created (str "/heroes/" (gen-pk response)))))
+  (let [id (q/insert-hero db hero)]
+    (created (str "/heroes/" id))))
 
 
 ;; Define all routes here

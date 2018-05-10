@@ -11,7 +11,7 @@
   (start [component]
     (if (:server component)
       component
-      (let [port (get-in component [:config :port])
+      (let [port (get-in component [:config :http-port])
             options {:join? false :port port}
             handler (routes/handler (:db component))
             server  (jetty/run-jetty (fn [req] (handler req)) options)]

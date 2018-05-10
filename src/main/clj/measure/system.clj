@@ -7,23 +7,21 @@
             [measure.component.jetty :refer [jetty-server]]))
 
 
-
 (defn make-config []
   (aero/read-config
     (clojure.java.io/resource "config.edn")
-    {:resolver aero/resource-resolver}))
+    {:resolver aero/relative-resolver}))
 
 
 (defn make-system
-  ([]
-   (let [config (make-config)]
-     (make-system config)))
-  ([config]
-   (let [{:keys [db-config http-config]} config]
-     (component/system-map
-       :db (hikaricp db-config)
-       :http (component/using
-               (jetty-server http-config) [:db])))))
+  "Creates a system containing:
+   * a database component (:db),
+   * a http-server component (:http)
+     depending on the database component."
+  [config]
+  (component/system-map
+   :db (hikaricp config)
+   :http (component/using (jetty-server config) [:db])))
 
 
 (defn -main [& args]

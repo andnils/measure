@@ -9,12 +9,12 @@
 (def test-system (atom nil))
 
 (def test-config
-  {:http-config {:port 35127}
-   :db-config   {:jdbc-url "jdbc:h2:mem;TRACE_LEVEL_FILE=0;TRACE_LEVEL_SYSTEM_OUT=0"
-                 :maximum-pool-size 1}})
+  {:http-port 35127
+   :jdbc-url "jdbc:h2:mem;TRACE_LEVEL_FILE=0;TRACE_LEVEL_SYSTEM_OUT=0"
+   :maximum-pool-size 1})
 
 (defn url [path]
-  (let [port (get-in test-config [:http-config :port])]
+  (let [port (:http-port test-config)]
     (str "http://localhost:" port path)))
 
 (defn start-test-system []

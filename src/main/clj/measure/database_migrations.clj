@@ -4,7 +4,7 @@
 
 
 (defn- make-ragtime-config
-  [{{:keys [:jdbc-url :username :password]} :db-config}]
+  [{:keys [:jdbc-url :username :password]}]
   {:datastore  (ragtime.jdbc/sql-database {:connection-uri jdbc-url
                                            :user username
                                            :password password})
