@@ -10,7 +10,7 @@
 
 (def test-config
   {:http-port 35127
-   :jdbc-url "jdbc:h2:mem;TRACE_LEVEL_FILE=0;TRACE_LEVEL_SYSTEM_OUT=0"
+   :connection-uri "jdbc:h2:mem;TRACE_LEVEL_FILE=0;TRACE_LEVEL_SYSTEM_OUT=0"
    :maximum-pool-size 1})
 
 (defn url [path]
