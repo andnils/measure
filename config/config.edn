@@ -2,17 +2,17 @@
  
  
  :http-port #long #or [#env MEASURE_HTTP_PORT
-                  #ref [:private :http-port]
-                  3000]
+                       #ref [:private :http-port]
+                       3000]
 
- :jdbc-url #or [#env MEASURE_DB_URL
-                #ref [:private :db-url]
-                "jdbc:postgresql://localhost/measuredb"]
+ :connection-uri #or [#env MEASURE_DB_URL
+                      #ref [:private :db-url]
+                      "jdbc:postgresql://localhost/measuredb"]
  
- :username #or [#env MEASURE_DB_USER
-                #ref [:private :db-user]
-                "muser"]
+ :user #or [#env MEASURE_DB_USER
+            #ref [:private :db-user]
+            "muser"]
  
  :password #or [#env MEASURE_DB_PASSWORD
                 #ref [:private :db-password]]
-}
+ }

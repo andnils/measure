@@ -3,7 +3,7 @@
   (:require [com.stuartsierra.component :as component]
             [aero.core :as aero]
             [measure.database-migrations :refer [db-migrate]]
-            [measure.component.hikaricp :refer [hikaricp]]
+            [measure.component.c3po :refer [make-connection-pool]]
             [measure.component.jetty :refer [jetty-server]]))
 
 
@@ -20,7 +20,7 @@
      depending on the database component."
   [config]
   (component/system-map
-   :db (hikaricp config)
+   :db (make-connection-pool config)
    :http (component/using (jetty-server config) [:db])))
 
 
